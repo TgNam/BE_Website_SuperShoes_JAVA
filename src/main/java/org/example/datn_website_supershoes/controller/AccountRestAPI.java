@@ -184,7 +184,7 @@ public class AccountRestAPI {
     }
 
     @GetMapping("/list-accounts-customer")
-    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE')")
+//    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE')")
     public ResponseEntity<?> getAllAccount() {
         try{
         List<AccountResponse> accountResponses = accountService.getAllAccountCustomerActive();
