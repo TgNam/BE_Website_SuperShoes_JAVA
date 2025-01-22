@@ -20,7 +20,7 @@ public class NotificationController {
         sink.tryEmitNext("UPDATE_CART");
         sink.tryEmitNext("UPDATE_PAYMENT");
         sink.tryEmitNext("UPDATE_PROMOTION");
-        sink.tryEmitNext("UPDATE_VOUCHER");
+//        sink.tryEmitNext("UPDATE_VOUCHER");
     }
     public void sendEvent(String messages){
         sink.tryEmitNext(messages);

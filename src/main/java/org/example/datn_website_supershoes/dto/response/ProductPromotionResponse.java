@@ -44,6 +44,6 @@ public class ProductPromotionResponse {
 
     private Integer quantityPromotionDetail;
 
-
+    private String status;
 
 }

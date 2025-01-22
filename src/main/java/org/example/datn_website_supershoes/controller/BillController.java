@@ -142,7 +142,7 @@ public class BillController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size,
             @RequestParam(value = "sort", defaultValue = "createdAt") String sortField,
-            @RequestParam(value = "sortDirection", defaultValue = "DESC") String sortDirection
+            @RequestParam(value = "sortDirection", defaultValue = "ASC") String sortDirection
     ) {
         Date deliveryDate = parseDate(deliveryDateStr);
         Date receiveDate = parseDate(receiveDateStr);
