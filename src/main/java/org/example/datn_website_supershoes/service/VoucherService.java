@@ -119,7 +119,7 @@ public class VoucherService {
                         Account account = accountRepository.findById(accountId)
                                 .orElseThrow(() -> new RuntimeException("Không tìm thấy tài khoản với ID: " + accountId));
 
-                        AccountVoucher accountVoucher = new AccountVoucher();
+                          AccountVoucher accountVoucher = new AccountVoucher();
                         accountVoucher.setVoucher(savedVoucher);
                         accountVoucher.setAccount(account);
                         accountVoucher.setCreatedBy(creator.getName());

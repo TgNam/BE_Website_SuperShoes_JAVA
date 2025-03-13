@@ -805,7 +805,7 @@ public class BillByEmployeeService {
                         promotionDetail.get().setStatus(Status.FINISHED.toString());
                     }
                     //Cập nhật lại sản phản phẩm sale
-                    totalMerchandise = promotionPrice.multiply(BigDecimal.valueOf(request.getQuantity()));
+                    totalMerchandise = totalMerchandise.add(promotionPrice.multiply(BigDecimal.valueOf(request.getQuantity())));
                     promotionDetailRepository.save(promotionDetail.get());
                 } else {
                     // Số lượng bán lẻ khách hàng sẽ mua ngoài số lượng sale
@@ -832,7 +832,10 @@ public class BillByEmployeeService {
                     promotionDetail.get().setQuantity(0);
                     promotionDetail.get().setStatus(Status.FINISHED.toString());
                     promotionDetailRepository.save(promotionDetail.get());
-                    totalMerchandise = promotionPrice.multiply(BigDecimal.valueOf(quantityProductPromotion)).add(priceProduct.multiply(BigDecimal.valueOf(retailQuantity)));
+                    totalMerchandise = totalMerchandise.add(
+                            promotionPrice.multiply(BigDecimal.valueOf(quantityProductPromotion))
+                                    .add(priceProduct.multiply(BigDecimal.valueOf(retailQuantity)))
+                    );
                 }
             }
             //Trường hợp sản phẩm không sale
@@ -846,7 +849,7 @@ public class BillByEmployeeService {
                 //Áp dụng giá gốc của sản phẩm
                 billDetail.setPriceDiscount(productDetail.getPrice());
                 billDetailRepository.save(billDetail);
-                totalMerchandise = productDetail.getPrice().multiply(BigDecimal.valueOf(request.getQuantity()));
+                totalMerchandise = totalMerchandise.add(productDetail.getPrice().multiply(BigDecimal.valueOf(request.getQuantity())));
             }
 
         }
@@ -901,7 +904,6 @@ public class BillByEmployeeService {
         }
         //Cập nhật lại Bill
         Bill updateBill = billRepository.save(saveBill);
-        bill.setTotalAmount(totalAmount.setScale(0, RoundingMode.DOWN));
         // Thực hiện thêm hóa đơn chi tiết
 
         PayBillRequest payBillRequest = PayBillRequest.builder()
