@@ -39,8 +39,7 @@ public class AccountService {
     @Autowired
      RandomPasswordGeneratorService randomPassword;
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-
+    
     public void createAccount(AccountRequest accountRequest) {
         Optional<Account> accountOP = accountRepository.findByEmail(accountRequest.getEmail());
         if (accountOP.isPresent()) {
